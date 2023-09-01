@@ -20,7 +20,16 @@ export class Product {
   @Column({ nullable: false })
   name: string;
 
-  @Column({ type: 'decimal', nullable: false, precision: 10, scale: 2 })
+  @Column({
+    type: 'decimal',
+    nullable: false,
+    precision: 10,
+    scale: 2,
+    transformer: {
+      from: (value: string) => parseFloat(value),
+      to: (value: number) => value.toString(),
+    },
+  })
   price: number;
 
   @Column({ nullable: false })
@@ -29,7 +38,16 @@ export class Product {
   @Column({ name: 'category_id', nullable: false })
   categoryId: number;
 
-  @Column({ type: 'decimal', nullable: false, precision: 10, scale: 2 })
+  @Column({
+    type: 'decimal',
+    nullable: false,
+    precision: 10,
+    scale: 2,
+    transformer: {
+      from: (value: string) => parseFloat(value),
+      to: (value: number) => value.toString(),
+    },
+  })
   weight: number;
 
   @Column({ nullable: false })
